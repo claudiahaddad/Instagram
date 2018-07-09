@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Parse.h"
 
 @interface AppDelegate ()
 
@@ -16,8 +17,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    return YES;
+    ParseClientConfiguration *config = [ParseClientConfiguration   configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
+        
+        configuration.applicationId = @"codepathInstagram";
+        configuration.clientKey = @"codepathInstagramMaster";
+        configuration.server = @"http://codepathfbinstagram.herokuapp.com/parse";
+    }];
+    
+    [Parse initializeWithConfiguration:config];
+        return YES;
 }
 
 
