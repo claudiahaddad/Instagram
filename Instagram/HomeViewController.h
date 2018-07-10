@@ -9,5 +9,5 @@
 #import "ViewController.h"
 
 @interface HomeViewController : ViewController
-
+<UITableViewDelegate, UITableViewDataSource,UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @end
