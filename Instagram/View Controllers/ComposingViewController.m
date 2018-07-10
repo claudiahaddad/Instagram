@@ -7,10 +7,14 @@
 //
 
 #import "ComposingViewController.h"
+#import "Post.h"
+#import <Parse/Parse.h>
+#import <Photos/Photos.h>
 
 @interface ComposingViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *imagePost;
 @property (strong, nonatomic) IBOutlet UITextField *captionPost;
+
 
 @end
 
@@ -18,6 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+  
+   //  *imageSize = CGSizeMake(width, height);
     // Do any additional setup after loading the view.
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
@@ -36,18 +42,40 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
     // Get the image captured by the UIImagePickerController
-    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
-    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
+   UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     
-    self.imagePost.image = originalImage;
+    self.imagePost.image = editedImage;
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 //TO DO: add functionality to share button
 
-- (IBAction)onShare:(id)sender {
+- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
+    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     
+    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
+    resizeImageView.image = image;
+    
+    UIGraphicsBeginImageContext(size);
+    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
+- (IBAction)onShare:(id)sender {
+    NSString *caption = self.captionPost.text;
+    UIImage *picture = self.imagePost.image;
+ 
+    UIImage *resizedPic = [self resizeImage:picture withSize:CGSizeMake(100,100)];
+    
+    [Post postUserImage:resizedPic withCaption:caption withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    }];
+    [self dismissViewControllerAnimated:true completion:nil];
+
     
 }
 - (IBAction)onCancel:(id)sender {

@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "ViewController.h"
-#import "Parse.h"
 
 @interface HomeViewController : UIViewController
 <UITableViewDelegate, UITableViewDataSource>

@@ -7,6 +7,8 @@
 //
 
 #import "Post.h"
+#import <Parse/Parse.h>
+
 
 @implementation Post
 
