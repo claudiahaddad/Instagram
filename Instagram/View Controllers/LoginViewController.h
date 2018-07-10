@@ -6,8 +6,9 @@
 //  Copyright © 2018 Claudia Haddad. All rights reserved.
 //
 
-#import "ViewController.h"
+#import <UIKit/UIKit.h>
+#import "Parse.h"
 
-@interface LoginViewController : ViewController
+@interface LoginViewController : UIViewController
 
 @end
