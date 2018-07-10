@@ -137,6 +137,9 @@
                                 <rect key="frame" x="27" y="91" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="onCancel:" destination="S5N-rN-1ed" eventType="touchUpInside" id="bBO-xo-ucr"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uAE-Qy-et2">
                                 <rect key="frame" x="305" y="91" width="40" height="30"/>

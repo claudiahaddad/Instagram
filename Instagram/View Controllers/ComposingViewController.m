@@ -48,7 +48,13 @@
 
 - (IBAction)onShare:(id)sender {
     
+    
 }
+- (IBAction)onCancel:(id)sender {
+    [self dismissViewControllerAnimated:true completion:nil];
+
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
