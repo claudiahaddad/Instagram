@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ComposingViewController.h
 //  Instagram
 //
 //  Created by Claudia Haddad on 7/9/18.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface ComposingViewController : UIViewController
 
 @end
-
