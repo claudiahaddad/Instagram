@@ -20,7 +20,8 @@
     self.imagePost.file = post[@"image"];
     [self.imagePost loadInBackground];
     self.captionPost.text = post[@"caption"];
-   //SET USER self.userPost.text = post[@"username"];
+    PFUser *user = post[@"author"];
+    self.userPost.text = user.username;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
