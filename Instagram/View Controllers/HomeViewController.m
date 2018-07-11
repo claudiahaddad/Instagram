@@ -8,11 +8,14 @@
 
 #import "HomeViewController.h"
 #import "Parse.h"
-#import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "InstagramPostCell.h"
 #import <ParseUI/ParseUI.h>
 #import "Post.h"
+#import "DetailViewController.h"
+#import "AppDelegate.h"
+#import "ComposingViewController.h"
+
 
 @interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -33,6 +36,8 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(getPosts) forControlEvents:UIControlEventValueChanged];
     
+    self.tableView.rowHeight = 130;
+
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     
 }
@@ -58,8 +63,8 @@
 - (void)getPosts {
     // construct query
     PFQuery *postQuery = [PFQuery queryWithClassName:@"Post"];
-    [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
+    [postQuery orderByDescending:@"createdAt"];
     postQuery.limit = 20;
 
     // fetch data asynchronously
@@ -76,15 +81,27 @@
 }
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+  //  if ([segue.identifier isEqualToString:@"composePost"]) {
+  //      UINavigationController *navigationController = [segue destinationViewController];
+     //   ComposingViewController //*composeController = (ComposingViewController*)navigationController.topViewController;
+  //  }
+   //else
+        if ([segue.identifier isEqualToString:@"detailSegue"]) {
+        UINavigationController *navigationController = [segue destinationViewController];
+       DetailViewController *detailViewController = (DetailViewController*)navigationController.topViewController;
+
+        InstagramPostCell *tappedCell = sender;
+        Post *post = tappedCell.post;
+        detailViewController.post = post;
+        NSLog(@"Tapping on a post!");
+    }
 }
-*/
+
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
@@ -93,8 +110,6 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     Post *post = self.postArray[indexPath.row];
     cell.post = post;
-    cell.captionPost.text = post[@"caption"];
-
     return cell;
 }
 
