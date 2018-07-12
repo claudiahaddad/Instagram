@@ -27,6 +27,8 @@
 
 @implementation HomeViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.dataSource = self;
@@ -36,7 +38,6 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(getPosts) forControlEvents:UIControlEventValueChanged];
     
-    self.tableView.rowHeight = 130;
 
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     
@@ -47,6 +48,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)onLogout:(id)sender {
+
     [PFUser  logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         // PFUser.current() will now be nil
     }];

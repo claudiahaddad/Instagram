@@ -9,22 +9,22 @@
 #import "ComposingViewController.h"
 #import "Post.h"
 #import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
 #import <Photos/Photos.h>
 
 @interface ComposingViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-@property (strong, nonatomic) IBOutlet UIImageView *imagePost;
 @property (strong, nonatomic) IBOutlet UITextField *captionPost;
+@property (strong, nonatomic) IBOutlet PFImageView *imagePost;
 
 
 @end
 
 @implementation ComposingViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
-   //  *imageSize = CGSizeMake(width, height);
-    // Do any additional setup after loading the view.
+      // Do any additional setup after loading the view.
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
     imagePickerVC.allowsEditing = YES;
@@ -38,6 +38,8 @@
     
     [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
+
+
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     

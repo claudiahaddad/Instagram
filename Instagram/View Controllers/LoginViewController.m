@@ -37,8 +37,11 @@
 
 -(void) loginUser {
         NSString *username = self.usernameField.text;
+        [self.view endEditing:YES];
+
         NSString *password = self.passwordField.text;
-        
+        [self.view endEditing:YES];
+
         [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
             if (error != nil) {
                 NSLog(@"User log in failed: %@", error.localizedDescription);
