@@ -9,25 +9,27 @@
 #import "HomeViewController.h"
 #import "Parse.h"
 #import "LoginViewController.h"
-#import "InstagramPostCell.h"
 #import <ParseUI/ParseUI.h>
 #import "Post.h"
 #import "DetailViewController.h"
 #import "AppDelegate.h"
 #import "ComposingViewController.h"
+#import "InfiniteScrollActivityView.h"
+#import "InstagramPostCell.h"
 
 
-@interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@interface HomeViewController () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *postArray;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (assign, nonatomic) BOOL isMoreDataLoading;
+@property (strong, nonatomic) IBOutlet InfiniteScrollActivityView *loadingMoreView;
 
 
 @end
 
 @implementation HomeViewController
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,8 +40,17 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(getPosts) forControlEvents:UIControlEventValueChanged];
     
-
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+    
+    // Set up Infinite Scroll loading indicator
+    CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+    self.loadingMoreView = [[InfiniteScrollActivityView alloc] initWithFrame:frame];
+    self.loadingMoreView.hidden = true;
+    [self.tableView addSubview:self.loadingMoreView];
+    
+    UIEdgeInsets insets = self.tableView.contentInset;
+    insets.bottom += InfiniteScrollActivityView.defaultHeight;
+    self.tableView.contentInset = insets;
     
 }
 
@@ -67,7 +78,6 @@
     PFQuery *postQuery = [PFQuery queryWithClassName:@"Post"];
     [postQuery includeKey:@"author"];
     [postQuery orderByDescending:@"createdAt"];
-    postQuery.limit = 20;
 
     // fetch data asynchronously
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
@@ -119,8 +129,42 @@
     return self.postArray.count;
 }
 
-- (void)didPost:(Post *)post {
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if(!self.isMoreDataLoading){
+        self.isMoreDataLoading = true;
+        
+        int scrollViewContentHeight = self.tableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+        
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
+            self.isMoreDataLoading = true;
+            
+            CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+            self.loadingMoreView.frame = frame;
+            [self.loadingMoreView startAnimating];
+            
+            [self loadMoreData];
+    }
+}
+}
+
+- (void)loadMoreData {
+    //TO DO: if data is up to date
+    PFQuery *postQuery = [PFQuery queryWithClassName:@"Post"];
     
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (error != nil) {
+        } else {
+            self.isMoreDataLoading = false;
+            [self.loadingMoreView stopAnimating];
+            self.postArray = posts;
+            [self.tableView reloadData];
+        }
+    }];
+
+}
+
+- (void)didPost:(Post *)post {
     [self.postArray insertObject:post atIndex:0];
     [self.tableView reloadData];
 }
