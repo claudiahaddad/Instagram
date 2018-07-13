@@ -16,7 +16,7 @@
 #import "ComposingViewController.h"
 #import "InfiniteScrollActivityView.h"
 #import "InstagramPostCell.h"
-
+#import "MBProgressHUD.h"
 
 
 @interface HomeViewController () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
@@ -51,7 +51,6 @@
     UIEdgeInsets insets = self.tableView.contentInset;
     insets.bottom += InfiniteScrollActivityView.defaultHeight;
     self.tableView.contentInset = insets;
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,9 +58,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)onLogout:(id)sender {
-
     [PFUser  logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-        // PFUser.current() will now be nil
     }];
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
@@ -73,8 +70,11 @@
 - (IBAction)onCamera:(id)sender {
     [self performSegueWithIdentifier:@"composePost" sender:nil];
 }
+
 - (void)getPosts {
     // construct query
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+
     PFQuery *postQuery = [PFQuery queryWithClassName:@"Post"];
     [postQuery includeKey:@"author"];
     [postQuery orderByDescending:@"createdAt"];
@@ -85,6 +85,7 @@
             self.postArray = posts;
             [self.refreshControl endRefreshing];
             [self.tableView reloadData];
+            [hud hideAnimated:YES];
 
         } else {
             NSLog(@"%@", error.localizedDescription);
@@ -151,6 +152,8 @@
 - (void)loadMoreData {
     //TO DO: if data is up to date
     PFQuery *postQuery = [PFQuery queryWithClassName:@"Post"];
+    [postQuery includeKey:@"author"];
+    [postQuery orderByDescending:@"createdAt"];
     
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (error != nil) {

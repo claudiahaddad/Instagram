@@ -16,5 +16,6 @@
 @property (strong, nonatomic) IBOutlet PFImageView *imagePost;
 @property (strong, nonatomic) IBOutlet UILabel *captionPost;
 @property (strong, nonatomic) IBOutlet UILabel *userPost;
+@property (strong, nonatomic) IBOutlet UILabel *timeLabel;
 
 @end

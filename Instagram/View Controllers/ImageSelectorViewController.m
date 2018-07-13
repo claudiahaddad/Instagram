@@ -1,55 +1,39 @@
 //
-//  ComposingViewController.m
+//  ImageSelectorViewController.m
 //  Instagram
 //
-//  Created by Claudia Haddad on 7/9/18.
+//  Created by Claudia Haddad on 7/12/18.
 //  Copyright © 2018 Claudia Haddad. All rights reserved.
 //
 
-#import "ComposingViewController.h"
-#import "Post.h"
-#import <Parse/Parse.h>
+#import "ImageSelectorViewController.h"
 #import <ParseUI/ParseUI.h>
-#import <Photos/Photos.h>
 
-@interface ComposingViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-@property (strong, nonatomic) IBOutlet UITextField *captionPost;
-@property (strong, nonatomic) IBOutlet PFImageView *imagePost;
-
+@interface ImageSelectorViewController ()
+@property (strong, nonatomic) IBOutlet PFImageView *profileImage;
 
 @end
 
-@implementation ComposingViewController
-
+@implementation ImageSelectorViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-      // Do any additional setup after loading the view.
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
     imagePickerVC.allowsEditing = YES;
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
-    }
-    else {
-        NSLog(@"Camera 🚫 available so we will use photo library instead");
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }
-    
+        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;    
     [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    
     // Get the image captured by the UIImagePickerController
-UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
-   UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
+    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     
-    self.imagePost.image = editedImage;
+    self.profileImage.image = editedImage;
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 - (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
     UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
@@ -65,29 +49,22 @@ UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     return newImage;
 }
 
-- (IBAction)onShare:(id)sender {
-    NSString *caption = self.captionPost.text;
-    UIImage *picture = self.imagePost.image;
- 
-    UIImage *resizedPic = [self resizeImage:picture withSize:CGSizeMake(100,100)];
-    
-    [Post postUserImage:resizedPic withCaption:caption withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-    }];
-    [self dismissViewControllerAnimated:true completion:nil];
+- (IBAction)onUpdate:(id)sender {
+UIImage *picture = self.profileImage.image;
+UIImage *resizedPic = [self resizeImage:picture withSize:CGSizeMake(100,100)];
+//set image view to the image they chose
 
-    
+[self dismissViewControllerAnimated:true completion:nil];
+
 }
 - (IBAction)onCancel:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
-
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 /*
 #pragma mark - Navigation

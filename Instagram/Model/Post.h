@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSString *caption;
 @property (nonatomic, strong) PFFile *image;
 @property (nonatomic, strong) NSNumber *likeCount;
+@property (nonatomic, strong) NSDate *date;
 @property (nonatomic, strong) NSNumber *commentCount;
 
 + (void) postUserImage: ( UIImage * _Nullable )image withCaption: ( NSString * _Nullable )caption withCompletion: (PFBooleanResultBlock  _Nullable)completion;

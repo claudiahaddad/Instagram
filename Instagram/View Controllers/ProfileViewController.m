@@ -7,8 +7,13 @@
 //
 
 #import "ProfileViewController.h"
+#import "Post.h"
+#import <ParseUI/ParseUI.h>
 
 @interface ProfileViewController ()
+
+@property (strong, nonatomic) IBOutlet PFImageView *profileImage;
+@property (strong, nonatomic) IBOutlet UILabel *username;
 
 @end
 
@@ -23,6 +28,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (IBAction)onPhotoClick:(id)sender {
+    [self performSegueWithIdentifier:@"selectSegue" sender:nil];
+
+    
+}
+
+
 
 /*
 #pragma mark - Navigation

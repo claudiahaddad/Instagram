@@ -16,6 +16,7 @@
 		B1B7BB0A20F6ABF800DE76C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1023C6020F402DB00F6203B /* Main.storyboard */; };
 		B1B7BB0D20F6D58900DE76C8 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B7BB0C20F6D58900DE76C8 /* ProfileViewController.m */; };
 		B1B7BB1020F7D40800DE76C8 /* InfiniteScrollActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B7BB0F20F7D40800DE76C8 /* InfiniteScrollActivityView.m */; };
+		B1B7BB1320F8115600DE76C8 /* ImageSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B7BB1220F8115600DE76C8 /* ImageSelectorViewController.m */; };
 		B1FAF27220F4168A0085FFE0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FAF27120F4168A0085FFE0 /* LoginViewController.m */; };
 		B1FAF27520F417D30085FFE0 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FAF27420F417D30085FFE0 /* HomeViewController.m */; };
 		B1FAF27F20F46FE30085FFE0 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FAF27E20F46FE30085FFE0 /* Post.m */; };
@@ -69,6 +70,8 @@
 		B1B7BB0C20F6D58900DE76C8 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		B1B7BB0E20F7D40800DE76C8 /* InfiniteScrollActivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollActivityView.h; sourceTree = "<group>"; };
 		B1B7BB0F20F7D40800DE76C8 /* InfiniteScrollActivityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollActivityView.m; sourceTree = "<group>"; };
+		B1B7BB1120F8115600DE76C8 /* ImageSelectorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageSelectorViewController.h; sourceTree = "<group>"; };
+		B1B7BB1220F8115600DE76C8 /* ImageSelectorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageSelectorViewController.m; sourceTree = "<group>"; };
 		B1FAF27020F4168A0085FFE0 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		B1FAF27120F4168A0085FFE0 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		B1FAF27320F417D30085FFE0 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -208,6 +211,8 @@
 			children = (
 				B1B7BB0B20F6D58900DE76C8 /* ProfileViewController.h */,
 				B1B7BB0C20F6D58900DE76C8 /* ProfileViewController.m */,
+				B1B7BB1120F8115600DE76C8 /* ImageSelectorViewController.h */,
+				B1B7BB1220F8115600DE76C8 /* ImageSelectorViewController.m */,
 				B1FAF28A20F56D030085FFE0 /* DetailViewController.h */,
 				B1FAF28B20F56D030085FFE0 /* DetailViewController.m */,
 				B1FAF28220F4784A0085FFE0 /* ComposingViewController.h */,
@@ -404,6 +409,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Instagram/Pods-Instagram-resources.sh",
+				"${PODS_ROOT}/DateTools/DateTools/DateTools/DateTools.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/Parse/Parse.bundle",
 				"${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/en.lproj",
 				"${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/fr.lproj",
@@ -411,6 +417,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DateTools.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Parse.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/en.lproj",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/fr.lproj",
@@ -451,6 +458,7 @@
 				B1B7BB1020F7D40800DE76C8 /* InfiniteScrollActivityView.m in Sources */,
 				B1023C6A20F402DD00F6203B /* main.m in Sources */,
 				B1FAF27520F417D30085FFE0 /* HomeViewController.m in Sources */,
+				B1B7BB1320F8115600DE76C8 /* ImageSelectorViewController.m in Sources */,
 				B1FAF28C20F56D030085FFE0 /* DetailViewController.m in Sources */,
 				B1023C5C20F402DB00F6203B /* AppDelegate.m in Sources */,
 				B1FAF28820F531620085FFE0 /* InstagramPostCell.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "InstagramPostCell.h"
+#import "NSDate+DateTools.h"
 
 
 @implementation InstagramPostCell
@@ -22,6 +23,11 @@
     self.captionPost.text = post[@"caption"];
     PFUser *user = post[@"author"];
     self.userPost.text = user.username;
+    
+    //time
+    NSDate *timestamp = self.post.createdAt;
+    NSString *timeInterval = [NSDate shortTimeAgoSinceDate:timestamp];
+    self.timeLabel.text = timeInterval;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

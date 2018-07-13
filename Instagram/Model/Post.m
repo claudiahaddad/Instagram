@@ -26,6 +26,8 @@
     newPost.caption = caption;
     newPost.likeCount = @(0);
     newPost.commentCount = @(0);
+    NSDate *date = [NSDate date];
+    newPost.date = date;
     
     [newPost saveInBackgroundWithBlock: completion];
 }
@@ -45,4 +47,5 @@
     
     return [PFFile fileWithName:@"image.png" data:imageData];
 }
+
 @end

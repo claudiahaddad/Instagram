@@ -10,6 +10,8 @@
 #import "Post.h"
 #import <ParseUI/ParseUI.h>
 #import "HomeViewController.h"
+#import "NSDate+DateTools.h"
+
 
 
 @interface DetailViewController ()
@@ -30,7 +32,13 @@
     self.captionLabel.text = self.post.caption;
     PFUser *user = self.post[@"author"];
     self.userLabel.text = user.username;
-    self.timestampLabel.text = self.post[@"createdAt"];
+    
+    //timestamp
+    NSDate *timestamp = self.post.createdAt;
+ 
+    NSString *timeInterval = [NSDate shortTimeAgoSinceDate:timestamp];
+  //  NSString *timeString = timeInterval;
+    self.timestampLabel.text = timeInterval;
     // Do any additional setup after loading the view.
 }
 
