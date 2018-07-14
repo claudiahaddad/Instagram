@@ -136,23 +136,38 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UwE-Z6-Vxe">
-                                <rect key="frame" x="0.0" y="268" width="375" height="392"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Z85-kh-HJe">
-                                    <size key="itemSize" width="106" height="115"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UwE-Z6-Vxe">
+                                <rect key="frame" x="0.0" y="197" width="375" height="470"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Z85-kh-HJe">
+                                    <size key="itemSize" width="146" height="122"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="NpL-hG-7SD">
-                                        <rect key="frame" x="0.0" y="0.0" width="106" height="115"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PostCollectionCell" id="NpL-hG-7SD" customClass="PostCollectionCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="146" height="122"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="106" height="115"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="146" height="122"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="649-PF-3mQ" customClass="PFImageView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="146" height="122"/>
+                                                </imageView>
+                                            </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="649-PF-3mQ" firstAttribute="leading" secondItem="NpL-hG-7SD" secondAttribute="leading" id="Tei-I4-gTD"/>
+                                            <constraint firstItem="649-PF-3mQ" firstAttribute="top" secondItem="NpL-hG-7SD" secondAttribute="top" id="Xjh-KE-Sx0"/>
+                                            <constraint firstAttribute="trailing" secondItem="649-PF-3mQ" secondAttribute="trailing" id="kwj-xs-qdw"/>
+                                            <constraint firstAttribute="bottom" secondItem="649-PF-3mQ" secondAttribute="bottom" id="sFK-a4-5WZ"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="postImage" destination="649-PF-3mQ" id="QcR-G0-gUV"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -167,7 +182,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="541-si-s9l" firstAttribute="leading" secondItem="lvk-aD-BvC" secondAttribute="leading" constant="16" id="CZ1-r1-pNF"/>
-                            <constraint firstItem="UwE-Z6-Vxe" firstAttribute="top" secondItem="541-si-s9l" secondAttribute="bottom" constant="74" id="Gq8-s6-pap"/>
                             <constraint firstItem="lvk-aD-BvC" firstAttribute="trailing" secondItem="daE-ed-ixX" secondAttribute="trailing" constant="267" id="H7b-TS-fGg"/>
                             <constraint firstItem="541-si-s9l" firstAttribute="top" secondItem="daE-ed-ixX" secondAttribute="bottom" constant="8" id="JDV-If-IYu"/>
                             <constraint firstItem="daE-ed-ixX" firstAttribute="top" secondItem="lvk-aD-BvC" secondAttribute="top" constant="15" id="Min-Je-ruW"/>
@@ -177,15 +191,23 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lvk-aD-BvC"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="rPe-Li-RDX"/>
+                    <navigationItem key="navigationItem" title="Profile" id="rPe-Li-RDX">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="h9b-ME-P8L">
+                            <color key="tintColor" red="0.62843197770000003" green="0.19619659449999999" blue="0.66199412030000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="onSave:" destination="qXX-8H-W8X" id="TbH-gI-nQN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="collectionView" destination="UwE-Z6-Vxe" id="Rvi-hZ-f69"/>
                         <outlet property="profileImage" destination="daE-ed-ixX" id="QY6-zQ-euE"/>
                         <outlet property="username" destination="541-si-s9l" id="wfJ-Uy-FN1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IoB-Dy-xEl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2932" y="564"/>
+            <point key="canvasLocation" x="2932" y="563.56821589205401"/>
         </scene>
         <!--Feed-->
         <scene sceneID="ZhV-Tu-0hl">

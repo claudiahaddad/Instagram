@@ -13,6 +13,7 @@
 		B1023C6A20F402DD00F6203B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1023C6920F402DD00F6203B /* main.m */; };
 		B1023C7420F402DD00F6203B /* InstagramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1023C7320F402DD00F6203B /* InstagramTests.m */; };
 		B1023C7F20F402DD00F6203B /* InstagramUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1023C7E20F402DD00F6203B /* InstagramUITests.m */; };
+		B139F22220F9394E00C90EB7 /* PostCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B139F22120F9394E00C90EB7 /* PostCollectionCell.m */; };
 		B1B7BB0A20F6ABF800DE76C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1023C6020F402DB00F6203B /* Main.storyboard */; };
 		B1B7BB0D20F6D58900DE76C8 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B7BB0C20F6D58900DE76C8 /* ProfileViewController.m */; };
 		B1B7BB1020F7D40800DE76C8 /* InfiniteScrollActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B7BB0F20F7D40800DE76C8 /* InfiniteScrollActivityView.m */; };
@@ -65,6 +66,8 @@
 		B1023C7A20F402DD00F6203B /* InstagramUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstagramUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1023C7E20F402DD00F6203B /* InstagramUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstagramUITests.m; sourceTree = "<group>"; };
 		B1023C8020F402DD00F6203B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B139F22020F9394E00C90EB7 /* PostCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCollectionCell.h; sourceTree = "<group>"; };
+		B139F22120F9394E00C90EB7 /* PostCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCollectionCell.m; sourceTree = "<group>"; };
 		B1B7BB0B20F6D58900DE76C8 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		B1B7BB0C20F6D58900DE76C8 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		B1B7BB0E20F7D40800DE76C8 /* InfiniteScrollActivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollActivityView.h; sourceTree = "<group>"; };
@@ -223,6 +226,8 @@
 		B1FAF28920F550D50085FFE0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B139F22020F9394E00C90EB7 /* PostCollectionCell.h */,
+				B139F22120F9394E00C90EB7 /* PostCollectionCell.m */,
 				B1B7BB0E20F7D40800DE76C8 /* InfiniteScrollActivityView.h */,
 				B1B7BB0F20F7D40800DE76C8 /* InfiniteScrollActivityView.m */,
 				B1FAF28620F531620085FFE0 /* InstagramPostCell.h */,
@@ -450,6 +455,7 @@
 			files = (
 				B1FAF27220F4168A0085FFE0 /* LoginViewController.m in Sources */,
 				B1B7BB0D20F6D58900DE76C8 /* ProfileViewController.m in Sources */,
+				B139F22220F9394E00C90EB7 /* PostCollectionCell.m in Sources */,
 				B1B7BB1020F7D40800DE76C8 /* InfiniteScrollActivityView.m in Sources */,
 				B1023C6A20F402DD00F6203B /* main.m in Sources */,
 				B1FAF27520F417D30085FFE0 /* HomeViewController.m in Sources */,
