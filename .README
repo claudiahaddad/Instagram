@@ -2,7 +2,7 @@
 
 **Instagram** is a photo sharing app using Parse as its backend.
 
-Time spent: **X** hours spent in total
+Time spent: **15** hours spent in total
 
 ## User Stories
 
@@ -30,24 +30,26 @@ The following **optional** features are implemented:
    - [ ] Display the profile photo with each post
    - [ ] Tapping on a post's username or profile photo goes to that user's profile page
 - [ ] User can comment on a post and see all comments for each post in the post details screen.
+The posts would have a property of an array comments, just like they have a property of captions, and each time a comment is posted the comment would be added to the array using PFQuery.
 - [ ] User can like a post and see number of likes for each post in the post details screen.
+'Likes' would also be a property of a post and it would increment whenever the heart button is pressed.
 - [ ] Implement a custom camera view.
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [] List anything else that you can get done to improve the app functionality!
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. It would've been cool to explore custom camera views as we will be using those in our app most likely.
+2. Extending the functionality to include a following option and updating the number of followers would've been interesting to implement.
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-
+<img src= 'https://i.imgur.com/sL5VTce.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+gif is uploaded in repository if it doesnt show
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Credits
